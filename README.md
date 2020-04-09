@@ -15,6 +15,7 @@ Build OpenWrt using GitHub Actions
 - Push `.config` file to the GitHub repository, and the build starts automatically.Progress can be viewed on the Actions page.
 - When the build is complete, click the `Artifacts` button in the upper right corner of the Actions page to download the binaries.
 
+
 ## Acknowledgments
 
 - [Microsoft](https://www.microsoft.com)
@@ -33,3 +34,32 @@ Build OpenWrt using GitHub Actions
 ## License
 
 [MIT](https://github.com/P3TERX/Actions-OpenWrt/blob/master/LICENSE) © P3TERX
+
+
+## 补充
+
+
+## 如何生成`.config`
+
+### 方法一
+参考<https://github.com/coolsnowwolf/lede>准备编译环境,然后执行
+
+```bash
+$ make menuconfig
+```
+
+选择要安装的软件包和定制的配置项
+
+```bash
+$ ./scripts/diffconfig.sh > diffconfig # write the changes to diffconfig
+$ cp diffconfig .config   # write changes to .config
+$ make defconfig   # expand to full config
+```
+
+编译步骤定制可以参考:
+ <https://openwrt.org/docs/guide-developer/build-system/use-buildsystem>
+
+
+### 方法二
+
+ 直接在本`.github/workflows/build-openwrt.yml`开始ssh登录，然后ssh到服务端执行`make menuconfig`进行定制

@@ -1,48 +1,31 @@
 # Actions-OpenWrt
 
-[![LICENSE](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square&label=LICENSE)](https://github.com/P3TERX/Actions-OpenWrt/blob/master/LICENSE)
-![GitHub Stars](https://img.shields.io/github/stars/P3TERX/Actions-OpenWrt.svg?style=flat-square&label=Stars&logo=github)
-![GitHub Forks](https://img.shields.io/github/forks/P3TERX/Actions-OpenWrt.svg?style=flat-square&label=Forks&logo=github)
+本机Fork自<https://github.com/P3TERX/Actions-OpenWrt>
 
-Build OpenWrt using GitHub Actions
-
-[Read the details in my blog (in Chinese) | 中文教程](https://p3terx.com/archives/build-openwrt-with-github-actions.html)
-
-## Usage
-
-- Click the [Use this template](https://github.com/P3TERX/Actions-OpenWrt/generate) button to create a new repository.
-- Generate `.config` files using [Lean's OpenWrt](https://github.com/coolsnowwolf/lede) source code. ( You can change it through environment variables in the workflow file. )
-- Push `.config` file to the GitHub repository, and the build starts automatically.Progress can be viewed on the Actions page.
-- When the build is complete, click the `Artifacts` button in the upper right corner of the Actions page to download the binaries.
+关于相关的使用，请参考[原作者的博客](https://p3terx.com/archives/build-openwrt-with-github-actions.html)。
 
 
-## Acknowledgments
-
-- [Microsoft](https://www.microsoft.com)
-- [Microsoft Azure](https://azure.microsoft.com)
-- [GitHub](https://github.com)
-- [GitHub Actions](https://github.com/features/actions)
-- [tmate](https://github.com/tmate-io/tmate)
-- [mxschmitt/action-tmate](https://github.com/mxschmitt/action-tmate)
-- [csexton/debugger-action](https://github.com/csexton/debugger-action)
-- [Cisco](https://www.cisco.com/)
-- [OpenWrt](https://github.com/openwrt/openwrt)
-- [Lean's OpenWrt](https://github.com/coolsnowwolf/lede)
-- [Cowtransfer](https://cowtransfer.com)
-- [Mikubill/cowtransfer-uploader](https://github.com/Mikubill/cowtransfer-uploader)
-
-## License
-
-[MIT](https://github.com/P3TERX/Actions-OpenWrt/blob/master/LICENSE) © P3TERX
 
 
 ## 补充
 
+如下根据自身的使用场景， 基于[原作者博客的内容](https://p3terx.com/archives/build-openwrt-with-github-actions.html)的基础上，做的一点补充
 
-## 如何生成`.config`
+### 如何生成`.config`
 
 ### 方法一
-参考<https://github.com/coolsnowwolf/lede>准备编译环境,然后执行
+
+直接在`.github/workflows/build-openwrt.yml`开启ssh登录，然后ssh到服务端执行`make menuconfig`进行定制
+
+### 方法二
+
+直接使用别人配置好的
+
+<https://github.com/esirplayground/AutoBuild-OpenWrt>
+
+### 方法三
+
+自己搭建编译环境生成，参考下面的[链接](https://github.com/coolsnowwolf/lede)搭建本地编译环境,然后执行
 
 ```bash
 $ make menuconfig
@@ -57,9 +40,11 @@ $ make defconfig   # expand to full config
 ```
 
 编译步骤定制可以参考:
+
  <https://openwrt.org/docs/guide-developer/build-system/use-buildsystem>
 
+## 把自己编译的固件打包成Docker镜像
 
-### 方法二
+请参考:
 
- 直接在本`.github/workflows/build-openwrt.yml`开始ssh登录，然后ssh到服务端执行`make menuconfig`进行定制
+<https://github.com/crazygit/openwrt-x86-64>

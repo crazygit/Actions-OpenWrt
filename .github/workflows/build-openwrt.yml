@@ -98,6 +98,15 @@ jobs:
         name: OpenWrt_bin
         path: openwrt/bin
 
+      # 目录机构
+      # openwrt/bin/targets/x86/64/config.seed
+      # openwrt/bin/targets/x86/64/openwrt-x86-64-combined-squashfs.img
+      # openwrt/bin/targets/x86/64/openwrt-x86-64-combined-squashfs.vmdk
+      # openwrt/bin/targets/x86/64/openwrt-x86-64-generic-rootfs.tar.gz
+      # openwrt/bin/targets/x86/64/openwrt-x86-64-generic.manifest
+      # openwrt/bin/targets/x86/64/openwrt-x86-64-rootfs-squashfs.img
+      # openwrt/bin/targets/x86/64/openwrt-x86-64-vmlinuz
+      # openwrt/bin/targets/x86/64/sha256sums
     - name: Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
@@ -119,3 +128,5 @@ jobs:
       run: |
         curl -fsSL https://git.io/cowtransfer | sh
         ./cowtransfer-uploader -b 2621440 -s -p 99 -t 3 --hash --silent ${FIRMWARE}
+    - name: Build Docker image
+      name: Publish Docker

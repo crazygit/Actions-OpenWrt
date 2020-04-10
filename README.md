@@ -1,15 +1,15 @@
 # Actions-OpenWrt
 
-本机Fork自<https://github.com/P3TERX/Actions-OpenWrt>
+本库Fork自
 
-关于相关的使用，请参考[原作者的博客](https://p3terx.com/archives/build-openwrt-with-github-actions.html)。
+<https://github.com/P3TERX/Actions-OpenWrt>
 
-
+相关的使用，请参考[原作者的博客](https://p3terx.com/archives/build-openwrt-with-github-actions.html)
 
 
 ## 补充
 
-如下根据自身的使用场景， 基于[原作者博客的内容](https://p3terx.com/archives/build-openwrt-with-github-actions.html)的基础上，做的一点补充
+如下根据自身的使用场景， 基于[原作者博客](https://p3terx.com/archives/build-openwrt-with-github-actions.html)内容的基础上，做的一点补充
 
 ### 如何生成`.config`
 

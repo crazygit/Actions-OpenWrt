@@ -128,5 +128,3 @@ jobs:
       run: |
         curl -fsSL https://git.io/cowtransfer | sh
         ./cowtransfer-uploader -b 2621440 -s -p 99 -t 3 --hash --silent ${FIRMWARE}
-    - name: Build Docker image
-      name: Publish Docker

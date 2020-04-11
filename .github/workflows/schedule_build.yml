@@ -4,6 +4,11 @@ on:
   # 每个月1号自动构建
   schedule:
     - cron: 0 0 1 * *
+  push:
+    branches:
+      master
+    paths:
+      - ".github/workflows/schedule_build.yml"
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -13,7 +18,7 @@ env:
   SSH_ACTIONS: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: false
-  UPLOAD_COWTRANSFER: false
+  UPLOAD_COWTRANSFER: true
   TZ: Asia/Shanghai
   REPOSITORY: crazygit/lean-openwrt-x86-64
 
@@ -49,8 +54,10 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         wget -q $CONFIG_FILE_URL -O openwrt/.config
-        # 添加自定义的target选项
+        # 添加自定义的target选项,并删除一些无用的配置项
         grep "CONFIG_TARGET_ROOTFS_TARGZ=y" openwrt/.config || echo 'CONFIG_TARGET_ROOTFS_TARGZ=y' >> openwrt/.config
+        sed -i '/CONFIG_KERNEL_BUILD_USER/d' openwrt/.config
+        sed -i '/CONFIG_GRUB_TITLE/d' openwrt/.config
         cat openwrt/.config
         chmod +x $DIY_SH
         cd openwrt
@@ -115,15 +122,17 @@ jobs:
         curl -fsSL https://git.io/cowtransfer | sh
         ./cowtransfer-uploader -b 2621440 -s -p 99 -t 3 --hash --silent ${FIRMWARE}
 
-    - name: Download Build Dockerfile
-      uses: actions/checkout@v2
-      with:
-        repository: crazygit/openwrt-x86-64
-        ref: master
-        path: dockerfile_dir
+    # action不稳定，有时间要报could not read Username for 'https://github.com',采用自己下载的方式
+    #- name: Download Build Dockerfile
+    #  uses: actions/checkout@v2
+    #  with:
+    #    repository: crazygit/openwrt-x86-64
+    #    ref: master
+    #    path: dockerfile_dir
 
-    - name: Copy firwmare file
+    - name: Prepare build docker image dir
       run: |
+        git clone --depth 1 https://github.com/crazygit/openwrt-x86-64.git -b master dockerfile_dir
         cp openwrt/bin/targets/x86/64/openwrt-x86-64-generic-rootfs.tar.gz dockerfile_dir/openwrt.tar.gz
 
     - name: Publish to Registry

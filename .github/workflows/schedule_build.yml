@@ -128,12 +128,12 @@ jobs:
         # cp openwrt/bin/targets/x86/64/openwrt-x86-64-generic-rootfs.tar.gz build/openwrt.tar.gz
 
     - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@master
-        env:
-          FIRMWARE: openwrt.tar.gz
-        with:
-          name: ${{ env.REPOSITORY }}
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
-          buildargs: FIRMWARE
-          snapshot: true
+      uses: elgohr/Publish-Docker-Github-Action@master
+      env:
+        FIRMWARE: openwrt.tar.gz
+      with:
+        name: ${{ env.REPOSITORY }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_TOKEN }}
+        buildargs: FIRMWARE
+        snapshot: true

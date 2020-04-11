@@ -4,9 +4,6 @@ on:
   # 每个月1号自动构建
   schedule:
     - cron: 0 0 1 * *
-  push:
-    branchs:
-      - master
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -51,7 +48,7 @@ jobs:
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
-        wget $CONFIG_FILE_URL -O openwrt/.config
+        wget -q $CONFIG_FILE_URL -O openwrt/.config
         # 添加自定义的target选项
         grep "CONFIG_TARGET_ROOTFS_TARGZ=y" openwrt/.config || echo 'CONFIG_TARGET_ROOTFS_TARGZ=y' >> openwrt/.config
         cat openwrt/.config

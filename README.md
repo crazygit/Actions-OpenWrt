@@ -1,14 +1,12 @@
 # 自动构建Lean's 大神的OpenWrt固件
 
-每个月1号，自动拉取最新的Lean大神的代码并构建Docker镜像
+每个月1号，自动拉取最新的Lean大神的代码，配置常用软件构建镜像
 
 ```bash
 $ docker pull crazygit/lean-openwrt-x86-64:latest
 ```
 
-把自己编译的固件打包成Docker镜像以及使用配置
-
-请参考:
+自己编译的固件打包成Docker镜像以及使用配置，请参考:
 
 <https://github.com/crazygit/openwrt-x86-64>
 
@@ -23,10 +21,9 @@ Lean's大神项目地址:
 
 github action相关的使用，请参考[原作者的博客](https://p3terx.com/archives/build-openwrt-with-github-actions.html)
 
-
 ## 补充
 
-如下根据自身的使用场景， 基于[原作者博客](https://p3terx.com/archives/build-openwrt-with-github-actions.html)内容的基础上，做的一点补充
+如下根据自身的使用场景，基于[原作者博客](https://p3terx.com/archives/build-openwrt-with-github-actions.html)内容的基础上，做的一点补充
 
 ### 如何生成`.config`
 

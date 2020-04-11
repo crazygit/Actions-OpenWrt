@@ -1,4 +1,8 @@
-# Actions-OpenWrt
+# 自动构建Lean's 大神的OpenWrt固件
+
+Lean's大神项目地址:
+
+<https://github.com/coolsnowwolf/lede>
 
 本库Fork自
 
@@ -13,19 +17,28 @@
 
 ### 如何生成`.config`
 
-### 方法一
+`.config`文件的作用就是定制编译过程中需要做的配置
+如:
+* 系统的配置
+* 需要预装的软件包
+
+它的生成方式有如下几种
+
+### 方法一(拿来主义)
+
+直接使用别人配置好的，如下是别的大神挑选的常用预装软件生成的配置，下载下来即可使用
+
+<https://raw.githubusercontent.com/esirplayground/AutoBuild-OpenWrt/master/x86_64.config>
+
+### 方法二(自己动手)
 
 直接在`.github/workflows/build-openwrt.yml`开启ssh登录，然后ssh到服务端执行`make menuconfig`进行定制
 
-### 方法二
+### 方法三(自娱自乐)
 
-直接使用别人配置好的
+这个方法其实是方法二的变形，只是所有的东西都要你自己来，自己搭建编译环境生成`.config`，
 
-<https://github.com/esirplayground/AutoBuild-OpenWrt>
-
-### 方法三
-
-自己搭建编译环境生成，参考下面的[链接](https://github.com/coolsnowwolf/lede)搭建本地编译环境,然后执行
+首先参考[链接](https://github.com/coolsnowwolf/lede)搭建本地编译环境,然后执行
 
 ```bash
 $ make menuconfig

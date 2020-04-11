@@ -120,18 +120,19 @@ jobs:
       with:
         repository: crazygit/openwrt-x86-64
         ref: master
-        path: build
+        path: dockerfile_dir
  
     - name: Copy
       run: |
-        wget http://images.wiseturtles.com/openwrt-x86-64-generic-rootfs.tar.gz -O build/openwrt.tar.gz
-        # cp openwrt/bin/targets/x86/64/openwrt-x86-64-generic-rootfs.tar.gz build/openwrt.tar.gz
+        wget -q http://images.wiseturtles.com/openwrt-x86-64-generic-rootfs.tar.gz -O dockerfile_dir/openwrt.tar.gz
+        # cp openwrt/bin/targets/x86/64/openwrt-x86-64-generic-rootfs.tar.gz dockerfile_dir/openwrt.tar.gz
 
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       env:
         FIRMWARE: openwrt.tar.gz
       with:
+        workdir: dockerfile_dir
         name: ${{ env.REPOSITORY }}
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_TOKEN }}

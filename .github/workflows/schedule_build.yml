@@ -124,7 +124,7 @@ jobs:
  
     - name: Copy
       run: |
-        wget https://static.cowtransfer.com/anonymous/02e12201-8634-49b7-954a-c0bc927dca8a/openwrt-x86-64-generic-rootfs.tar.gz?onett=33f379b4b66cb9953a677af551d881bc&attname=openwrt-x86-64-generic-rootfs.tar.gz -O build/openwrt.tar.gz
+        wget http://images.wiseturtles.com/openwrt-x86-64-generic-rootfs.tar.gz -O build/openwrt.tar.gz
         # cp openwrt/bin/targets/x86/64/openwrt-x86-64-generic-rootfs.tar.gz build/openwrt.tar.gz
 
     - name: Publish to Registry

@@ -16,10 +16,6 @@ on:
       - master
     paths:
       - '.config'
-#  schedule:
-#    - cron: 0 8 * * 5
-#  watch:
-#    types: started
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -98,7 +94,7 @@ jobs:
         name: OpenWrt_bin
         path: openwrt/bin
 
-      # 目录机构
+      # 目录结构
       # openwrt/bin/targets/x86/64/config.seed
       # openwrt/bin/targets/x86/64/openwrt-x86-64-combined-squashfs.img
       # openwrt/bin/targets/x86/64/openwrt-x86-64-combined-squashfs.vmdk

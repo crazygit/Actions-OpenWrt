@@ -6,10 +6,15 @@
 $ docker pull crazygit/lean-openwrt-x86-64:latest
 ```
 
+如果你偏好纯净的官方原版本的OpenWrt固件，可以使用我编译的原版固件
+
+```bash
+$ docker pull crazygit/openwrt-x86-64
+```
+
 自己编译的固件打包成Docker镜像以及使用配置，请参考:
 
 <https://github.com/crazygit/openwrt-x86-64>
-
 
 Lean's大神项目地址:
 
